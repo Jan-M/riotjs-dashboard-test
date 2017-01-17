@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Riot todo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="todo.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.0.5/es5-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script>html5.addElements('todo')</script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <dashboard></dashboard>
+
+    <script src="dashboard.tag" type="riot/tag"></script>
+    <script src="https://rawgit.com/riot/riot/master/riot%2Bcompiler.min.js"></script>
+
+    <script>
+    alerts = {
+      selected: null,
+      alerts: [ 
+        {"name":"Alert 1", "id": 1},
+        {"name":"Alert 2", "id": 2},
+        {"name":"Alert 3", "id": 3}
+      ]
+    }
+
+    var tags
+    riot.compile(function() {
+      // here tags are compiled and riot.mount works synchronously
+      tags = riot.mount('dashboard', alerts)
+    })
+
+    addAlert = function() {
+      alerts.alerts.push({"name":"Alert 4", "id": 4})
+      tags[0].update()
+    }
+
+    </script>
+    
+    <a href="#" onClick="addAlert()">add</a>
+
+  </body>
+
+</html>
